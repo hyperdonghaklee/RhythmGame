@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
             float distance = Vector3.Distance(transform.position, hit.collider.transform.position);     // 플레이어와 Food 사이의 거리 계산
             if (distance <= SliceRange)                                                                 // 슬라이스 가능 사거리 이내인지 판단
             {
+                GameManager.Instance.AddScore(GameManager.Instance.FoodScore);                          // 제거하기전 점수추가
                 Destroy(hit.collider.gameObject);                                                       // Food 오브젝트 제거 (슬라이스)
                 break;                                                                                  // 종료
             }
@@ -37,10 +38,16 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Spike"))  // 플레이어가 스파이크에 닿았는지 판단
+        if (collision.gameObject.CompareTag("Spike") || collision.gameObject.CompareTag("Out"))         // 스파이크 또는 Out에 닿았는지 판단
         {
             Debug.Log("게임 오버!");
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("GameOver");                                                         // 게임오버 씬으로 전환
+        }
+
+        else if (collision.gameObject.CompareTag("End"))                                                // End에 닿았는지 판단
+        {
+            Debug.Log("엔딩!");
+            SceneManager.LoadScene("Ending");                                                           // 엔딩 씬으로 전환
         }
     }
 }
