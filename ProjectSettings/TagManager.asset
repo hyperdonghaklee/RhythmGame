@@ -9,6 +9,8 @@ TagManager:
   - Spike
   - Out
   - End
+  - SpdupPD
+  - SpddnPD
   layers:
   - Default
   - TransparentFX

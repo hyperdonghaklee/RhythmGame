@@ -4,9 +4,12 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public float F_speed = 5f;      // 직진 속도
-    public float S_speed = 1.25f;   // 양옆으로 이동속도
+    public float S_speed = 5f;      // 양옆으로 이동속도
 
-    public float SliceRange = 2f;   // 슬라이스 가능 사거리
+    public float SliceRange = 5f;   // 슬라이스 가능 사거리
+
+    public float SpdupMul = 2f;     // 가속 패드 배율 (2배)
+    public float SpddnMul = 0.5f;   // 감속 패드 배율 (절반)
 
     private void Update()
     {
@@ -48,6 +51,19 @@ public class Player : MonoBehaviour
         {
             Debug.Log("엔딩!");
             SceneManager.LoadScene("Ending");                                                           // 엔딩 씬으로 전환
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("SpdupPD"))                                                                // 가속 패드에 들어갔는지 판단
+        {
+            S_speed *= SpdupMul;                                                                        // 현재 속도에 가속 배율 적용
+        }
+
+        else if (other.CompareTag("SpddnPD"))                                                           // 감속 패드에 들어갔는지 판단
+        {
+            S_speed *= SpddnMul;                                                                        // 현재 속도에 감속 배율 적용
         }
     }
 }
