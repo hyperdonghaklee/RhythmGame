@@ -11,6 +11,8 @@ TagManager:
   - End
   - SpdupPD
   - SpddnPD
+  - SpdupPD_F
+  - SpddnPD_F
   layers:
   - Default
   - TransparentFX
