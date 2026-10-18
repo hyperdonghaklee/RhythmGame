@@ -66,12 +66,12 @@ public class Player : MonoBehaviour
             S_speed *= SpddnMul;                                                                        // 현재 속도에 감속 배율 적용
         }
 
-        if (other.CompareTag("SpdupPD"))                                                                // 가속 패드(앞)에 들어갔는지 판단
+        if (other.CompareTag("SpdupPD_F"))                                                                // 가속 패드(앞)에 들어갔는지 판단
         {
             F_speed *= SpdupMul;                                                                        // 현재 속도에 가속 배율 적용
         }
 
-        else if (other.CompareTag("SpddnPD"))                                                           // 감속 패드(앞)에 들어갔는지 판단
+        else if (other.CompareTag("SpddnPD_F"))                                                           // 감속 패드(앞)에 들어갔는지 판단
         {
             F_speed *= SpddnMul;                                                                        // 현재 속도에 감속 배율 적용
         }
